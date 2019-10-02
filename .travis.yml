@@ -1,0 +1,10 @@
+sudo: required
+services:
+    - docker
+
+before-install:
+    - docker build -f Dockerfile.dev -t milindl/docker-react .
+
+script:
+    - docker run -e CI=true milindl/docker-react npm run test
+    
