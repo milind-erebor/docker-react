@@ -1,0 +1,19 @@
+version: '3'
+
+services:    
+    web:
+        restart: on-failure
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "8080:3000"
+        volumes:
+            - ./src:/usr/app/src
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./src:/usr/app/src
+        command: ["npm", "run", "test"]
